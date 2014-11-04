@@ -74,6 +74,7 @@
     <TargetExt>.node</TargetExt>
     <IncludePath>$(NODE_ROOT)\src;$(NODE_ROOT)\deps\v8\include;$(NODE_ROOT)\deps\uv\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(NODE_ROOT)\$(Configuration);C:\Program Files\Microsoft SDKs\Windows\v7.1\Lib\x64;$(LibraryPath)</LibraryPath>
+    <TargetName>NgraphLmdb</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <TargetExt>.node</TargetExt>
@@ -84,6 +85,7 @@
     <TargetExt>.node</TargetExt>
     <IncludePath>$(NODE_ROOT)\src;$(NODE_ROOT)\deps\v8\include;$(NODE_ROOT)\deps\uv\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(NODE_ROOT)\$(Configuration);C:\Program Files\Microsoft SDKs\Windows\v7.1\Lib\x64;$(LibraryPath)</LibraryPath>
+    <TargetName>Loader</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

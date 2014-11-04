@@ -40,6 +40,7 @@ Thumbs.db
 ######
 *.sdf
 *.opensdf
+*.user
 *.csv
 x64/
 test-data/
