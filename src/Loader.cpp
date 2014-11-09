@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <lmdb.h>
 
 using namespace v8;
 
@@ -62,6 +63,37 @@ Handle<Value> Loader::New(const Arguments& args) {
   }
 }
 
+int Loader::Test(std::string path){
+
+	int rc;
+	MDB_env *env;
+    MDB_dbi dbi;
+    MDB_val key, data;
+    MDB_txn *txn;
+    MDB_stat mst;
+    MDB_cursor *cursor;
+    int count;
+    int *values;
+    char sval[32];
+
+	rc = mdb_env_create(&env);
+	rc = mdb_env_set_mapsize(env, 10485760);
+	rc = mdb_env_open(env, "./testdb", MDB_FIXEDMAP /*|MDB_NOSYNC*/, 0664);
+	rc = mdb_txn_begin(env, NULL, 0, &txn);
+	rc = mdb_open(txn, NULL, 0, &dbi);
+
+	rc = mdb_env_stat(env, &mst);
+
+	printf("size %d \n", mst.ms_psize);
+
+	mdb_close(env, dbi); 
+    mdb_txn_abort(txn);
+    mdb_env_close(env);
+
+	return 0;
+}
+
+
 int Loader::OpenFile(std::string path) {
   std::stringstream ss;
   std::ifstream ifs;
@@ -103,7 +135,8 @@ Handle<Value> Loader::Bulkload(const Arguments& args) {
 
   Loader* obj = ObjectWrap::Unwrap<Loader>(args.This());
   
-  obj->OpenFile(obj->value_);
+  //obj->OpenFile(obj->value_);
+  //obj->Test(obj->value_);
 
   return scope.Close(v8::String::New(obj->retval_.c_str()));
 }

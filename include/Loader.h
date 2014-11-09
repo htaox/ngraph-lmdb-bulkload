@@ -16,6 +16,7 @@ class Loader : public node::ObjectWrap {
   static v8::Handle<v8::Value> Bulkload(const v8::Arguments& args);
   static v8::Persistent<v8::Function> constructor;
   int OpenFile(std::string path);
+  int Test(std::string path);
   std::string value_;
   std::string retval_;
 };
