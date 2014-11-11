@@ -9,14 +9,18 @@ class Loader : public node::ObjectWrap {
   static void Init(v8::Handle<v8::Object> exports);
 
  private:
-  explicit Loader(double value = 0);
+  explicit Loader(std::string value);
   ~Loader();
 
   static v8::Handle<v8::Value> New(const v8::Arguments& args);
-  static int OpenFile(std::string path, std::stringstream ss);
   static v8::Handle<v8::Value> Bulkload(const v8::Arguments& args);
+  static v8::Handle<v8::Value> Stats(const v8::Arguments& args);
   static v8::Persistent<v8::Function> constructor;
-  double value_;
+  int OpenFile(std::string path);
+  int Test(std::string path);
+  int GetStats();
+  std::string value_;
+  std::string retval_;
 };
 
 #endif
